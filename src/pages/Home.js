@@ -23,8 +23,7 @@ export function Home() {
   let skillKey = 0; // Used to give a unique key to each skill button.
 
   useEffect(() => {
-    const currentHour = new Date().getHours();
-    console.log(currentHour); // Gets the current hour.
+    const currentHour = new Date().getHours(); // Gets the current hour.
     if (currentHour < 12) {
       setGreeting('Good morning!');
     } else if (currentHour >= 12 && currentHour < 18) {
@@ -75,6 +74,7 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 18,
     width: '100%',
+    height: 60,
     padding: Platform.OS === 'ios' ? 15 : 10,
     marginTop: 30,
     borderRadius: 7,
