@@ -6,9 +6,11 @@ import {
   View,
   TextInput,
   Platform,
-  TouchableOpacity,
   ScrollView,
+  FlatList,
 } from 'react-native';
+import {Button} from '../components/Button';
+import {SkillCard} from '../components/SkillCard';
 
 export function Home() {
   // States
@@ -28,21 +30,13 @@ export function Home() {
         placeholderTextColor="#555"
         onChangeText={setNewSkill}
       />
-      <TouchableOpacity
-        style={styles.button}
-        activeOpacity={0.7}
-        onPress={handleAddNewSkill}>
-        <Text style={styles.buttonText}>Add Skill</Text>
-      </TouchableOpacity>
+      <Button handle={handleAddNewSkill} />
       <Text style={[styles.text, {marginTop: 50}]}>My Skills</Text>
-      <ScrollView persistentScrollbar>
-        {/* Map through the mySkills Array and render the button for each element */}
-        {mySkills.map(skill => (
-          <TouchableOpacity style={styles.skillButton} key={skillKey++}>
-            <Text style={styles.skillButtonText}>{skill}</Text>
-          </TouchableOpacity>
-        ))}
-      </ScrollView>
+      <FlatList
+        data={mySkills}
+        keyExtractor={() => skillKey++}
+        renderItem={({item}) => <SkillCard skill={item} />}
+      />
     </View>
   );
 }
@@ -68,29 +62,5 @@ const styles = StyleSheet.create({
     padding: Platform.OS === 'ios' ? 15 : 10,
     marginTop: 30,
     borderRadius: 7,
-  },
-  button: {
-    backgroundColor: '#a370f7',
-    padding: 15,
-    borderRadius: 7,
-    marginTop: 20,
-    alignItems: 'center',
-  },
-  buttonText: {
-    color: '#fff',
-    fontSize: 17,
-    fontWeight: 'bold',
-  },
-  skillButton: {
-    backgroundColor: '#1f1e25',
-    padding: 15,
-    borderRadius: 50,
-    marginTop: 20,
-    alignItems: 'center',
-  },
-  skillButtonText: {
-    color: '#fff',
-    fontSize: 17,
-    fontWeight: 'bold',
   },
 });
