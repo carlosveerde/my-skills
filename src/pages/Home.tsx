@@ -51,7 +51,7 @@ export function Home() {
         placeholderTextColor="#555"
         onChangeText={setNewSkill}
       />
-      <Button handle={handleAddNewSkill} />
+      <Button title={'Add'} onPress={handleAddNewSkill} activeOpacity={0.7} />
       <Text style={[styles.text, {marginTop: 40, marginBottom: 10}]}>
         My Skills
       </Text>
